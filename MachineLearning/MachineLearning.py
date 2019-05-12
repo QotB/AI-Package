@@ -50,17 +50,16 @@ class node:
     def __init__(self, rows):
         self.leaf = False
         self.prediction = None
-        self.left = None #true
-        self.right = None #false
+        self.left = None  # true
+        self.right = None  # false
         self.question = None
         self.rows = rows
 
     def isLeaf(self):
-        return self.left == None and self.right == None
+        return self.left is None and self.right is None
 
 
 class ID3:
-
     def getGain(self, left, right, impurity):
         p = float(len(left)) / (len(left) + len(right))
         return impurity - p * self.calcImpurity(left) - (1 - p) * self.calcImpurity(right)
@@ -86,7 +85,7 @@ class ID3:
         q = None
         impurity = self.calcImpurity(rows)
         for f in self.features:
-            if f.visited == False:
+            if f.visited is False:
                 trueRows, falseRows = self.split(rows, f.name)
                 if len(trueRows) == 0 or len(falseRows) == 0:
                     continue
